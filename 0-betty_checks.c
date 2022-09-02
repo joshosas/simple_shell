@@ -27,10 +27,10 @@ int main(void)
 	int x = 5;
 	int y = 2;
 	int result;
-	
+
 	result = add(x, y);
-	
+
 	printf("%d", result);
-	
+
 	return (0);
 }
