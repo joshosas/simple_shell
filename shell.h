@@ -44,7 +44,7 @@ char *_which(char *filename, list_path *head);
 
 /**
  * struct mybuild - pointer to function with corresponding buildin command
- * @name: buildin command
+ * @name: builtin command
  * @func: execute the buildin command
  */
 typedef struct mybuild
@@ -55,7 +55,7 @@ typedef struct mybuild
 
 void(*checkbuild(char **arv))(char **arv);
 int _atoi(char *s);
-void exitt(char **arv);
+void exitt(char	**arv);
 void env(char **arv);
 void _setenv(char **arv);
 void _unsetenv(char **arv);
