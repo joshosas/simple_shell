@@ -7,7 +7,6 @@
  * @delim: delimiter
  * Return: array of pointers to words
  */
-
 char **splitstring(char *str, const char *delim)
 {
 	int i, wn;
@@ -51,7 +50,6 @@ char **splitstring(char *str, const char *delim)
  * execute - function executes a command
  * @argv: pointer array of arguments
  */
-
 void execute(char **argv)
 {
 
@@ -71,4 +69,66 @@ void execute(char **argv)
 		exit(EXIT_FAILURE);
 	}
 	wait(&status);
+}
+
+
+/**
+ * _realloc - Reallocates memory block
+ * @ptr: previous pointer
+ * @old_size: old size of previous pointer
+ * @new_size: new size for our pointer
+ * Return: New resized pointer
+ */
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+{
+	char *new;
+	char *old;
+
+	unsigned int i;
+
+	if (ptr == NULL)
+		return (malloc(new_size));
+
+	if (new_size == old_size)
+		return (ptr);
+
+	if (new_size == 0 && ptr != NULL)
+	{
+		free(ptr);
+		return (NULL);
+	}
+
+	new = malloc(new_size);
+	old = ptr;
+	if (new == NULL)
+		return (NULL);
+
+	if (new_size > old_size)
+	{
+		for (i = 0; i < old_size; i++)
+			new[i] = old[i];
+		free(ptr);
+		for (i = old_size; i < new_size; i++)
+			new[i] = '\0';
+	}
+	if (new_size < old_size)
+	{
+		for (i = 0; i < new_size; i++)
+			new[i] = old[i];
+		free(ptr);
+	}
+	return (new);
+}
+
+/**
+ * freearv - frees the array of pointers arv
+ * @arv: array of pointers
+ */
+void freearv(char **arv)
+{
+	int i;
+
+	for (i = 0; arv[i]; i++)
+		free(arv[i]);
+	free(arv);
 }
